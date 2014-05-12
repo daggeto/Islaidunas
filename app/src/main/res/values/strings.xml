@@ -9,5 +9,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="amount">Suma:</string>
     <string name="transaction_cat_label">Kategorija:</string>
+    <string name="LT">LT</string>
+    <string name="transaction_title">Transaction title</string>
+    <string name="transaction_date">Transaction Date</string>
+    <string name="transaction_amount">Tx Amount</string>
+    <string name="category_image">Category Image</string>
+    <string name="simple_category">Simple Category</string>
 
 </resources>

@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/transaction_category"
+        android:contentDescription="@string/category_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
@@ -23,20 +24,20 @@
             android:textStyle="bold"
             android:paddingTop="4dp"
             android:paddingLeft="4dp"
-            android:text="Transaction title" />
+            android:text="@string/transaction_title" />
         <TextView android:id="@+id/transaction_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="9dp"
+            android:textSize="12sp"
             android:textStyle="italic"
             android:paddingLeft="4dp"
             android:layout_below="@id/transaction_name"
-            android:text="Transaction Date" />
+            android:text="@string/transaction_date" />
     </RelativeLayout>
     <TextView android:id="@+id/transaction_amount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingRight="4dp"
-        android:text="Tx Amount"
+        android:text="@string/transaction_amount"
         android:gravity="center_vertical|right"/>
 </LinearLayout>

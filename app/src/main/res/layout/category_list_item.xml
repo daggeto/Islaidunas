@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/category_image"
         android:src="@drawable/travel"
+        android:contentDescription="@string/category_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
@@ -13,7 +14,7 @@
         android:id="@+id/category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textColor="#115a0f"
-        android:text="Test"/>
+        android:text="@string/simple_category"/>
 </LinearLayout>
