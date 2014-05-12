@@ -12,9 +12,9 @@ import java.util.Date;
 
 @DatabaseTable
 public class Transaction {
-
+    //TODO: change to Long or UUID
     @DatabaseField(generatedId = true)
-    private int id;
+    private Integer id;
 
     @DatabaseField
     private String title;
@@ -60,11 +60,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

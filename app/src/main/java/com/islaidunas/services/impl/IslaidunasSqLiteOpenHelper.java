@@ -25,7 +25,7 @@ import javax.inject.Inject;
  */
 public class IslaidunasSqLiteOpenHelper extends OrmLiteSqliteOpenHelper {
 
-    public static final int DATABASE_VERSION = 11;
+    public static final int DATABASE_VERSION = 13;
     public static final String DATABASE_NAME = "Islaidunas.db";
     private Context context;
 

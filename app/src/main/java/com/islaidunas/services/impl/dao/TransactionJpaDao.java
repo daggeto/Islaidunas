@@ -10,14 +10,15 @@ import java.sql.SQLException;
 /**
  * Created by daggreto on 2014.05.11.
  */
-public class TransactionJpaDao extends GenericDao<Transaction, String>{
+public class TransactionJpaDao extends GenericDao<Transaction, Integer>{
 
     public TransactionJpaDao(Context context){
         super(context);
     }
 
     @Override
-    Dao<Transaction, String> createDao() throws SQLException {
+    Dao<Transaction, Integer> createDao() throws SQLException {
             return getDatabaseHelper().getDao(Transaction.class);
     }
+
 }

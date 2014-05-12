@@ -32,6 +32,16 @@ abstract class GenericDao<T, K>{
         }
     }
 
+    public Dao.CreateOrUpdateStatus saveOrUpdate(T entity){
+        try {
+            return getDao().createOrUpdate(entity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new Dao.CreateOrUpdateStatus(false, false, 0);
+    }
+
     public int save(T entity){
         try {
             return dao.create(entity);
@@ -53,6 +63,16 @@ abstract class GenericDao<T, K>{
             e.printStackTrace();
         }
         return new ArrayList<T>();
+    }
+
+    public T findById(K id){
+        try {
+            return getDao().queryForId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public IslaidunasSqLiteOpenHelper getDatabaseHelper(){

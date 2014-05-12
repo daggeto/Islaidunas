@@ -3,6 +3,8 @@ package com.islaidunas.domain;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+
 /**
  * Created by daggreto on 2014.05.07.
  */
@@ -52,5 +54,14 @@ public class Category {
     @Override
     public String toString() {
         return new StringBuilder().append(getTitle()).toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Category other = (Category) o;
+        return new EqualsBuilder()
+                .append(this.getCode(), other.getCode())
+                .append(this.getTitle(), other.getTitle())
+                .isEquals();
     }
 }

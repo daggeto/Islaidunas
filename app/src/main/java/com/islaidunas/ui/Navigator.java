@@ -11,4 +11,13 @@ public class Navigator {
         Intent i = new Intent(context, AddTransactionActivity.class);
         context.startActivity(i);
     }
+    public static void goToEditTransaction(Context context, int id){
+        Intent i = new Intent(context, AddTransactionActivity.class);
+        i.putExtra(AddTransactionFragment.EXTRA_TX_ID, id);
+        context.startActivity(i);
+    }
+    public static void goToTransactionsList(Context context){
+        Intent i = new Intent(context, TransactionsListActivity.class);
+        context.startActivity(i);
+    }
 }

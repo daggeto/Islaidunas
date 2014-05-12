@@ -20,4 +20,5 @@ public class CategoryJpaDao extends GenericDao<Category, String> {
     Dao<Category, String> createDao() throws SQLException {
         return getDatabaseHelper().getDao(Category.class);
     }
+
 }

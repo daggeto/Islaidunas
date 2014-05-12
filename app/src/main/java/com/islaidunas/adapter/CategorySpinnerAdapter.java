@@ -39,8 +39,9 @@ public class CategorySpinnerAdapter extends ArrayAdapter<Category> {
     }
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
-        Category item = getItem(position);
         LayoutInflater inflater = LayoutInflater.from(context);
+        Category item = getItem(position);
+
         View spinner = inflater.inflate(R.layout.category_list_item, parent, false);
         TextView text = (TextView) spinner.findViewById(R.id.category_name);
         text.setText(item.getTitle());
@@ -51,6 +52,7 @@ public class CategorySpinnerAdapter extends ArrayAdapter<Category> {
         return spinner;
     }
 
+    //TODO: implement converter
     private Drawable getDrawable(Category item){
         int resourceId = context.getResources().getIdentifier(item.getSrc(), "drawable", context.getPackageName());
 

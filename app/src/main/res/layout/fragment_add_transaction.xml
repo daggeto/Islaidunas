@@ -29,6 +29,7 @@
             android:textColor="#115a0f"
             android:gravity="center_vertical|right"
             android:inputType="numberDecimal"
+            android:selectAllOnFocus="true"
             />
         <TextView
             android:layout_width="wrap_content"
