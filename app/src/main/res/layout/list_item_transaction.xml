@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/transaction_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:src="@android:drawable/ic_dialog_info"
+        />
+    <RelativeLayout
+        android:id="@+id/transaction_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:id="@+id/transaction_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:paddingTop="4dp"
+            android:paddingLeft="4dp"
+            android:text="Transaction title" />
+        <TextView android:id="@+id/transaction_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9dp"
+            android:textStyle="italic"
+            android:paddingLeft="4dp"
+            android:layout_below="@id/transaction_name"
+            android:text="Transaction Date" />
+    </RelativeLayout>
+    <TextView android:id="@+id/transaction_amount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="4dp"
+        android:text="Tx Amount"
+        android:gravity="center_vertical|right"/>
+</LinearLayout>

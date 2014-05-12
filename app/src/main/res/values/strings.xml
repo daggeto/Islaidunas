@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Islaidunas</string>
+    <string name="add_transactio_label">Pridėti Išlaidas</string>
+    <string name="action_settings">Settings</string>
+    <string name="transactions_list">Expenses</string>
+    <string name="title_activity_add_transaction">AddTransactionActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="amount">Suma:</string>
+    <string name="transaction_cat_label">Kategorija:</string>
+
+</resources>
