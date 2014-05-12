@@ -1,9 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.islaidunas.ui.TransactionsListActivity" >
-    <item android:id="@+id/add_transaction"
-        android:icon="@android:drawable/ic_menu_add"
-        android:title="@string/add_transactio_label"
-        android:showAsAction="always"/>
-</menu>
