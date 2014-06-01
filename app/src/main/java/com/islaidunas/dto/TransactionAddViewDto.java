@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -31,11 +32,26 @@ public class TransactionAddViewDto {
         }
     }
 
-    public String getDate() {
-        return formatDate(transaction.getDate());
+    public Date getDate(){
+        if(transaction.getDate() == null){
+            transaction.setDate(new Date());
+        }
+
+        return transaction.getDate();
     }
 
-    public void setDate(String date) {
+    public String getDateString() {
+        return formatDate(getDate());
+    }
+
+    public Calendar getCalendar(){
+        Calendar c = Calendar.getInstance();
+        c.setTime(getDate());
+        return c;
+    }
+
+    public void setDate(Date date) {
+        transaction.setDate(date);
     }
 
     public Transaction getTransaction() {
@@ -72,6 +88,7 @@ public class TransactionAddViewDto {
     public void setAmount(String amount) {
         if(amount == null || amount.isEmpty()){
             transaction.setAmount(BigDecimal.ZERO);
+            return;
         }
         try {
             DecimalFormat df = (DecimalFormat) NumberFormat.getInstance();
@@ -84,7 +101,7 @@ public class TransactionAddViewDto {
         }
     }
 
-    private String formatDate(Date date){
+    public static String formatDate(Date date){
         return DateFormat.format("EEEE, MMM d, yyyy", date).toString();
     }
 

@@ -20,6 +20,10 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
@@ -30,4 +34,11 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'commons-lang:commons-lang:2.2'
+    compile 'com.squareup.flow:flow:0.6'
+    compile 'com.jakewharton:butterknife:5.0.1'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.mobsandgeeks:android-saripaar:1.0.3'
+    compile 'com.squareup.mortar:mortar:0.14'
+    compile 'com.squareup.retrofit:retrofit:1.2.2'
+    compile 'com.netflix.rxjava:rxjava-core:0.14.7'
 }

@@ -38,6 +38,7 @@ public class CategorySpinnerAdapter extends ArrayAdapter<Category> {
         return getCustomView(position, convertView, parent);
     }
 
+    //TODO: implement ButterKnife
     public View getCustomView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         Category item = getItem(position);

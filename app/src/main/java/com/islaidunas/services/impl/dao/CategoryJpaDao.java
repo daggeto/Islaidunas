@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * Created by daggreto on 2014.05.11.
  */
-public class CategoryJpaDao extends GenericDao<Category, String> {
+public class CategoryJpaDao extends GenericJpaDao<Category, String> {
 
     public CategoryJpaDao(Context context) {
         super(context);

@@ -6,4 +6,7 @@
         android:icon="@android:drawable/ic_menu_save"
         android:title="@string/add_transactio_label"
         android:showAsAction="always"/>
+
+
+
 </menu>

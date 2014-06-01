@@ -4,28 +4,27 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.islaidunas.IslaidunasApp;
+import com.islaidunas.IslaidunasApplication;
 import com.islaidunas.R;
 import com.islaidunas.domain.Category;
 import com.islaidunas.domain.Transaction;
 import com.islaidunas.services.impl.dao.CategoryJpaDao;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.inject.Inject;
+
+import mortar.Mortar;
 
 /**
  * Created by daggreto on 2014.05.10.
  */
 public class IslaidunasSqLiteOpenHelper extends OrmLiteSqliteOpenHelper {
 
-    public static final int DATABASE_VERSION = 13;
+    public static final int DATABASE_VERSION = 14;
     public static final String DATABASE_NAME = "Islaidunas.db";
     private Context context;
 
@@ -38,8 +37,8 @@ public class IslaidunasSqLiteOpenHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
-        ((IslaidunasApp)context.getApplicationContext()).inject(this);
         try {
+            Mortar.inject(context, this);
             TableUtils.createTableIfNotExists(connectionSource, Transaction.class);
             TableUtils.createTableIfNotExists(connectionSource, Category.class);
             initCategoryTable();

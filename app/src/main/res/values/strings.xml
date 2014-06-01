@@ -7,13 +7,19 @@
     <string name="transactions_list">Expenses</string>
     <string name="title_activity_add_transaction">AddTransactionActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="amount">Suma:</string>
-    <string name="transaction_cat_label">Kategorija:</string>
+    <string name="amount">Suma</string>
+    <string name="transaction_cat_label">Kategorija</string>
     <string name="LT">LT</string>
     <string name="transaction_title">Transaction title</string>
     <string name="transaction_date">Transaction Date</string>
     <string name="transaction_amount">Tx Amount</string>
     <string name="category_image">Category Image</string>
     <string name="simple_category">Simple Category</string>
+    <string name="transaction_list_screen_title">Transactions</string>
+    <string name="add_transaction_screen_title">Add Transaction</string>
+    <string name="delete_transaction_lebel">Delete</string>
+    <string name="transaction_date_label">Data</string>
+    <string name="title">Kas</string>
+    <string name="number_required">Privalote įvesti skaičių</string>
 
 </resources>
