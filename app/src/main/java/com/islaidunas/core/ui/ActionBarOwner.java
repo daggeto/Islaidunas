@@ -19,6 +19,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import mortar.Mortar;
@@ -58,8 +59,9 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.View> {
         }
 
         public Config withAction(MenuAction action) {
-            actions.add(action);
-            return new Config(showHomeEnabled, upButtonEnabled, title, actions);
+            List<MenuAction> newInstance = new ArrayList<MenuAction>(actions);
+            newInstance.add(action);
+            return new Config(showHomeEnabled, upButtonEnabled, title, newInstance);
         }
 
         public Config addAction(MenuAction action){

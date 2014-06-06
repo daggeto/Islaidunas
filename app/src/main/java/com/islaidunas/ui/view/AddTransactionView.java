@@ -65,6 +65,8 @@ public class AddTransactionView extends LinearLayout implements DatePickerDialog
     GestureDetector detector;
     public boolean isScrolling = false;
 
+    float dragSpeed = 1.5F;
+
     public AddTransactionView(Context context, AttributeSet attrs) {
         super(context, attrs);
         Mortar.inject(context, this);
@@ -209,10 +211,10 @@ public class AddTransactionView extends LinearLayout implements DatePickerDialog
                 isScrolling = true;
                 View currentView = AddTransactionView.this;
 
-                float stopPos = currentView.getWidth()/3;
+                float stopPos = 100;
 
                 float cPos = currentView.getTranslationX();
-                float nPos = cPos - distanceX/1.5F;
+                float nPos = cPos - distanceX/ dragSpeed;
                 if(nPos > 0 && nPos < stopPos){
                     currentView.setTranslationX(nPos);
                 } else if (nPos > stopPos){

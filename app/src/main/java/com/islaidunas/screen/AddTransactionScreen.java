@@ -89,7 +89,7 @@ public class AddTransactionScreen implements Blueprint, HasParent<TransactionLis
 
             ActionBarOwner.Config actionBarConfig = actionBar.getConfig();
 
-            actionBarConfig = actionBarConfig.addAction(
+            actionBarConfig = actionBarConfig.withAction(
                     new ActionBarOwner.MenuAction("Save",
                             new Action0() {
                                 @Override
