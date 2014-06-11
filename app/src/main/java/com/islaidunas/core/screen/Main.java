@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.islaidunas.core.FlowOwner;
-import com.islaidunas.core.module.ActionBarModule;
+import com.islaidunas.core.module.MainActivityModule;
 import com.islaidunas.core.module.ApplicationModule;
 import com.islaidunas.core.ui.ActionBarOwner;
 import com.islaidunas.core.view.MainView;
@@ -34,7 +34,7 @@ public class Main implements Blueprint {
     }
 
     @dagger.Module(
-            includes = ActionBarModule.class,
+            includes = MainActivityModule.class,
             injects = MainView.class,
             addsTo = ApplicationModule.class, //
             library = true //

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
+import com.dropbox.sync.android.DbxAccountManager;
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.view.MainView;
@@ -35,11 +36,14 @@ import static android.view.MenuItem.SHOW_AS_ACTION_ALWAYS;
  * Created by daggreto on 2014.05.19.
  */
 public class MainActivity extends ActionBarActivity implements ActionBarOwner.View{
+    static final int REQUEST_LINK_TO_DBX = 0;
+
     private MortarActivityScope activityScope;
     private List<ActionBarOwner.MenuAction> actionBarMenuAction;
 
     private Flow mainFlow;
     @Inject ActionBarOwner actionBarOwner;
+    @Inject DbxAccountManager dbxAccountManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,11 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
         MortarScope parentScope = Mortar.getScope(getApplication());
         activityScope = Mortar.requireActivityScope(parentScope, new Main());
         Mortar.inject(this, this);
+
+        if (!dbxAccountManager.hasLinkedAccount()) {
+            //TODO: No address associated with hostname
+            dbxAccountManager.startLink((Activity)MainActivity.this, REQUEST_LINK_TO_DBX);
+        }
 
         activityScope.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
