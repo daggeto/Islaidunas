@@ -4,11 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.dropbox.sync.android.DbxAccountManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.islaidunas.core.GsonParcer;
 import com.islaidunas.core.MainThread;
 import com.islaidunas.core.model.QuoteService;
+import com.islaidunas.core.ui.MainActivity;
 
 import java.util.concurrent.Executor;
 
@@ -25,7 +27,7 @@ import rx.concurrency.ExecutorScheduler;
 /**
  * Created by daggreto on 2014.05.19.
  */
-@Module(includes = DatabaseModule.class, library = true, complete = true)
+@Module(includes = DatabaseModule.class, library = true)
 //TODO: Investigate Scheduler and quoteService
 public class ApplicationModule {
 
