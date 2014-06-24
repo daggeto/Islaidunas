@@ -27,7 +27,7 @@ import rx.concurrency.ExecutorScheduler;
 /**
  * Created by daggreto on 2014.05.19.
  */
-@Module(includes = DatabaseModule.class, library = true)
+@Module(includes = {DbxModule.class, DatabaseModule.class}, library = true)
 //TODO: Investigate Scheduler and quoteService
 public class ApplicationModule {
 

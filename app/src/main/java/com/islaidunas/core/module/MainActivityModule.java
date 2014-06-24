@@ -23,6 +23,7 @@ import com.dropbox.sync.android.DbxAccountManager;
 import com.dropbox.sync.android.DbxDatastore;
 import com.dropbox.sync.android.DbxException;
 import com.islaidunas.core.dbxStoreOrm.EntityManager;
+import com.islaidunas.core.dbxStoreOrm.mapper.EntityMapper;
 import com.islaidunas.core.ui.ActionBarOwner;
 import com.islaidunas.core.ui.MainActivity;
 
@@ -35,26 +36,5 @@ import dagger.Provides;
 public class MainActivityModule {
     @Provides @Singleton ActionBarOwner provideActionBarOwner() {
         return new ActionBarOwner();
-    }
-
-    @Provides @Singleton DbxAccountManager provideDbxAccountManager(Context context){
-        return DbxAccountManager.getInstance(context, "4y1y08z6k86rhgo", "h40y2jfc4fr3bmk");
-    }
-
-    @Provides DbxAccount provideDbxAccount(DbxAccountManager manager){
-        return manager.getLinkedAccount();
-    }
-
-    @Provides DbxDatastore provideDbxDatastore(DbxAccount account){
-        try {
-            return DbxDatastore.openDefault(account);
-        } catch (DbxException e) {
-            Log.e("DbxException", e.toString());
-            return null;
-        }
-    }
-
-    @Provides EntityManager provideEntityManager(DbxDatastore store){
-        return new EntityManager(store);
     }
 }

@@ -40,7 +40,7 @@ public class TransactionListView extends ListView {
         presenter.takeView(this);
     }
 
-    private Integer getTransactionId(Object tranasaction){
+    private String getTransactionId(Object tranasaction){
         return ((Transaction)tranasaction).getId();
     }
 }

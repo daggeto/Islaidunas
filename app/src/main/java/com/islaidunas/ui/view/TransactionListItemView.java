@@ -1,12 +1,9 @@
 package com.islaidunas.ui.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,10 +13,7 @@ import com.islaidunas.domain.Category;
 import com.islaidunas.domain.Transaction;
 import com.islaidunas.dto.TransactionAddViewDto;
 
-import org.w3c.dom.Text;
-
 import java.math.BigDecimal;
-import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -64,13 +58,27 @@ public class TransactionListItemView extends LinearLayout {
     }
 
     private Drawable getDrawable(Category item){
-        int resourceId = getContext().getResources().getIdentifier(item.getSrc(), "drawable", getContext().getPackageName());
-
-        if(resourceId == 0){
-            resourceId = getContext().getResources().getIdentifier("def", "drawable", getContext().getPackageName());
+        int resourceId = 0;
+        if(item == null){
+            return getDefaultDrawable();
         }
 
+        resourceId = getContext().getResources().getIdentifier(item.getSrc(), "drawable", getContext().getPackageName());
+
+        if(resourceId == 0){
+            return getDefaultDrawable();
+        }
+
+        return getDrawableIcon(resourceId);
+    }
+
+    private Drawable getDrawableIcon(int resourceId) {
         return getContext().getResources().getDrawable(resourceId);
+    }
+
+    private Drawable getDefaultDrawable() {
+        int resId = getContext().getResources().getIdentifier("def", "drawable", getContext().getPackageName());
+        return getDrawableIcon(resId);
     }
 
 }

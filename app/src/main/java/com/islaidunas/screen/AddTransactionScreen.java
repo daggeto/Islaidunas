@@ -1,19 +1,15 @@
 package com.islaidunas.screen;
 
-import android.annotation.TargetApi;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.ui.ActionBarOwner;
+import com.islaidunas.dao.dbx.TransactionJpaDao;
 import com.islaidunas.domain.Category;
 import com.islaidunas.domain.Transaction;
-import com.islaidunas.services.impl.dao.CategoryJpaDao;
-import com.islaidunas.services.impl.dao.TransactionJpaDao;
+import com.islaidunas.dao.CategoryJpaDao;
 import com.islaidunas.ui.view.AddTransactionView;
 import com.mobsandgeeks.saripaar.Validator;
 
@@ -35,13 +31,13 @@ import rx.util.functions.Action0;
  */
 @Layout(R.layout.add_transaction)
 public class AddTransactionScreen implements Blueprint, HasParent<TransactionListScreen> {
-    private final Integer transactionId;
+    private final String transactionId;
 
     public AddTransactionScreen(){
         this(null);
     }
 
-    public AddTransactionScreen(Integer transactionId) {
+    public AddTransactionScreen(String transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -102,6 +98,7 @@ public class AddTransactionScreen implements Blueprint, HasParent<TransactionLis
                                 }
                             }, android.R.drawable.ic_menu_save
                     ));
+            //TODO: exception here
             if(transaction.getId() != null){
                 actionBarConfig.addAction(new ActionBarOwner.MenuAction("Delete",
                         new Action0() {
@@ -118,7 +115,7 @@ public class AddTransactionScreen implements Blueprint, HasParent<TransactionLis
         }
 
         public void saveTransaction(){
-            transactionJpaDao.saveOrUpdate(transaction);
+            transactionJpaDao.save(transaction);
         }
 
         public void deleteTransaction(){

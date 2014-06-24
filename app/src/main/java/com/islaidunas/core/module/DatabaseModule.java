@@ -2,13 +2,9 @@ package com.islaidunas.core.module;
 
 import android.content.Context;
 
-import com.islaidunas.core.ui.MainActivity;
 import com.islaidunas.services.impl.IslaidunasSqLiteOpenHelper;
-import com.islaidunas.services.impl.dao.CategoryJpaDao;
-import com.islaidunas.services.impl.dao.TransactionJpaDao;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-
-import javax.inject.Singleton;
+import com.islaidunas.dao.CategoryJpaDao;
+import com.islaidunas.dao.TransactionJpaDao;
 
 import dagger.Module;
 import dagger.Provides;

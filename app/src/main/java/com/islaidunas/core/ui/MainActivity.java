@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.dropbox.sync.android.DbxAccountManager;
 import com.islaidunas.R;
@@ -41,6 +42,8 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
     private MortarActivityScope activityScope;
     private List<ActionBarOwner.MenuAction> actionBarMenuAction;
 
+    private Bundle savedInstanceState;
+
     private Flow mainFlow;
     @Inject ActionBarOwner actionBarOwner;
     @Inject DbxAccountManager dbxAccountManager;
@@ -48,6 +51,8 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setExceptionHandler();
 
         if (isWrongInstance()) {
             finish();
@@ -59,16 +64,43 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
         Mortar.inject(this, this);
 
         if (!dbxAccountManager.hasLinkedAccount()) {
-            //TODO: No address associated with hostname
+            this.savedInstanceState = savedInstanceState;
             dbxAccountManager.startLink((Activity)MainActivity.this, REQUEST_LINK_TO_DBX);
+            return;
         }
 
+        afterLinkDbx();
+    }
+
+    private void setExceptionHandler() {
+        Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
+        {
+            @Override
+            public void uncaughtException (Thread thread, Throwable e)
+            {
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG);
+            }
+        });
+    }
+
+    private void afterLinkDbx() {
         activityScope.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MainView mainView = (MainView) findViewById(R.id.container);
         mainFlow = mainView.getFlow();
 
         actionBarOwner.takeView(this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_LINK_TO_DBX) {
+            if (resultCode == Activity.RESULT_OK) {
+                afterLinkDbx();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override public Object getSystemService(String name) {

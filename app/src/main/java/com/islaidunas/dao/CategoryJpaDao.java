@@ -1,4 +1,4 @@
-package com.islaidunas.services.impl.dao;
+package com.islaidunas.dao;
 
 import android.content.Context;
 

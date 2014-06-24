@@ -5,8 +5,8 @@ import android.os.Bundle;
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.ui.ActionBarOwner;
+import com.islaidunas.dao.dbx.TransactionJpaDao;
 import com.islaidunas.domain.Transaction;
-import com.islaidunas.services.impl.dao.TransactionJpaDao;
 import com.islaidunas.ui.view.TransactionListView;
 
 import java.util.List;
@@ -70,7 +70,7 @@ public class TransactionListScreen implements Blueprint {
             return transactions;
         }
 
-        public void goToTransaction(Integer id){
+        public void goToTransaction(String id){
             flow.goTo(new AddTransactionScreen(id));
         }
     }

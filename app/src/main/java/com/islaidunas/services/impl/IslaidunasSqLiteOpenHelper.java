@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.islaidunas.IslaidunasApplication;
 import com.islaidunas.R;
 import com.islaidunas.domain.Category;
 import com.islaidunas.domain.Transaction;
-import com.islaidunas.services.impl.dao.CategoryJpaDao;
+import com.islaidunas.dao.CategoryJpaDao;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -39,7 +38,7 @@ public class IslaidunasSqLiteOpenHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
             Mortar.inject(context, this);
-            TableUtils.createTableIfNotExists(connectionSource, Transaction.class);
+//            TableUtils.createTableIfNotExists(connectionSource, Transaction.class);
             TableUtils.createTableIfNotExists(connectionSource, Category.class);
             initCategoryTable();
         } catch (SQLException e) {

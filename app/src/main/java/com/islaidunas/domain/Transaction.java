@@ -1,7 +1,10 @@
 package com.islaidunas.domain;
 
+import com.islaidunas.core.dbxStoreOrm.mapper.DbxField;
+import com.islaidunas.core.dbxStoreOrm.mapper.DbxId;
+import com.islaidunas.core.dbxStoreOrm.mapper.DbxTable;
+import com.islaidunas.core.dbxStoreOrm.mapper.EntityMapper;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,22 +13,22 @@ import java.util.Date;
  * Created by daggreto on 2014.05.06.
  */
 
-@DatabaseTable
+@DbxTable
 public class Transaction {
-    //TODO: change to Long or UUID
-    @DatabaseField(generatedId = true)
-    private Integer id;
 
-    @DatabaseField
+    @DbxId
+    private String id;
+
+    @DbxField
     private String title;
 
-    @DatabaseField
+    @DbxField
     private BigDecimal amount;
 
-    @DatabaseField
+    @DbxField
     private Date date;
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    @DbxField
     private Category category;
 
     public String getTitle() {
@@ -60,11 +63,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
