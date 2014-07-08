@@ -1,9 +1,9 @@
 Islaidunas
 ==========
 
-With this application you can easely tack your expenses.
-
-Existing features:
-  * List transactions
-  * Add/Edit/Delete transaction
-  * Swipe animation :)
+In plans is create Dropbox Datastore Orm framework
+ 
+On this time existing features:
+ * Parser
+ * Annotations
+ * EntityManager
