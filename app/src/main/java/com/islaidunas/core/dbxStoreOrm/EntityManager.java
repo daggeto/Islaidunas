@@ -1,16 +1,13 @@
 package com.islaidunas.core.dbxStoreOrm;
 
-import android.util.Log;
-
 import com.dropbox.sync.android.DbxDatastore;
-import com.dropbox.sync.android.DbxException;
 import com.dropbox.sync.android.DbxFields;
 import com.dropbox.sync.android.DbxRecord;
 import com.dropbox.sync.android.DbxTable;
-import com.islaidunas.core.dbxStoreOrm.mapper.DbxField;
+import com.islaidunas.core.dbxStoreOrm.enums.RelationType;
+import com.islaidunas.core.dbxStoreOrm.mapper.DbxComplexEntityNode;
 import com.islaidunas.core.dbxStoreOrm.mapper.EntityMapper;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +38,9 @@ public class EntityManager {
                 record.deleteRecord();
             }
 
-            DbxFields fields = entityMapper.parseEntity(entity);
+            DbxComplexEntityNode fields = entityMapper.parseEntity(entity);
 
-            table.insert(fields);
+            insertComplexEntity(fields, null);
 
             store.sync();
 
@@ -54,6 +51,23 @@ public class EntityManager {
             return false;
         }
 
+
+    }
+
+    private void insertComplexEntity(DbxComplexEntityNode node, String parentId){
+        DbxTable table = store.getTable(node.getTableName());
+
+        DbxRecord record = table.insert(node.getFields());
+
+        String nodeId = record.getId();
+
+        if(!node.hasChilds()){
+            return;
+        }
+
+        for(DbxComplexEntityNode child : node.getChilds()){
+            insertComplexEntity(child, nodeId);
+        }
 
     }
 
@@ -94,6 +108,12 @@ public class EntityManager {
 
     }
 
+    public DbxTableRelationStrategy resolveRealtionStrategy(RelationType type){
+        if(RelationType.manyToMany.equals(type)) return new ManyToOneStrategy();
+
+        return new NoRelationStrategy();
+    }
+
     public static class Query{
         //TODO: refactor to QueryBuilder
         private Class table;
@@ -119,6 +139,22 @@ public class EntityManager {
 
         public DbxFields getCriteries() {
             return criteries;
+        }
+    }
+
+    public class ManyToOneStrategy implements DbxTableRelationStrategy{
+
+        @Override
+        public void insertEntity(DbxComplexEntityNode entity, String parentId, DbxDatastore store) {
+            //TODO: create first strategy, transaction -> category. In what sequance execute
+        }
+    }
+
+    public class NoRelationStrategy implements DbxTableRelationStrategy{
+
+        @Override
+        public void insertEntity(DbxComplexEntityNode entity, String parentId, DbxDatastore store) {
+
         }
     }
 

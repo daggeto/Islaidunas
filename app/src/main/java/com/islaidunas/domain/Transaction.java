@@ -1,10 +1,10 @@
 package com.islaidunas.domain;
 
+import com.islaidunas.core.dbxStoreOrm.enums.RelationType;
 import com.islaidunas.core.dbxStoreOrm.mapper.DbxField;
 import com.islaidunas.core.dbxStoreOrm.mapper.DbxId;
 import com.islaidunas.core.dbxStoreOrm.mapper.DbxTable;
-import com.islaidunas.core.dbxStoreOrm.mapper.EntityMapper;
-import com.j256.ormlite.field.DatabaseField;
+import com.islaidunas.core.dbxStoreOrm.mapper.Relation;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,6 +14,7 @@ import java.util.Date;
  */
 
 @DbxTable
+
 public class Transaction {
 
     @DbxId
@@ -28,7 +29,7 @@ public class Transaction {
     @DbxField
     private Date date;
 
-    @DbxField
+    @Relation(reference_id = "cat_id", relationType = RelationType.manyToOne)
     private Category category;
 
     public String getTitle() {

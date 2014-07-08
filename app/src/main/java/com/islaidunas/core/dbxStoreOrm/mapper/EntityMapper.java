@@ -3,6 +3,7 @@ package com.islaidunas.core.dbxStoreOrm.mapper;
 import com.dropbox.sync.android.DbxFields;
 import com.dropbox.sync.android.DbxRecord;
 import com.islaidunas.core.dbxStoreOrm.Logger;
+import com.islaidunas.core.dbxStoreOrm.enums.RelationType;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -23,30 +24,45 @@ public class EntityMapper {
 
     private EntityParseHelper parseHelper = new EntityParseHelper();
 
-    public DbxFields parseEntity(Object entity){
+    public DbxComplexEntityNode parseEntity(Object entity) throws IllegalAccessException{
         if(!isDbxTable(entity)){
             //TODO:[Exceptions] Create exception "Entity is not declared as Dbx table with @DbxTable annotation"
             return null;
         }
 
+
+        DbxComplexEntityNode result = new DbxComplexEntityNode();
+
         List<Field> fields = getDbxFields(entity);
         DbxFields record = new DbxFields();
-        for(Field field : fields){
-            try {
-                field.setAccessible(true);
-                Method setter = parseHelper.getSetter(field.getType());
-
-                if(setter != null){
-                    setter.invoke(parseHelper, field.getName(), field.get(entity), record);
-                }
-            } catch (IllegalAccessException e) {
-                Logger.error(TAG, e.toString());
-            }catch (InvocationTargetException e) {
-                Logger.error(TAG, e.toString());
+        for(Field field : fields) {
+            if (isRelationField(field)) {
+                DbxComplexEntityNode subEntity = parseEntity(field.get(entity));
+                subEntity.setRelationType(getRelationType(field));
+                result.addChild(subEntity);
+            } else {
+                parseField(entity, record, field);
             }
         }
 
-        return record;
+        result.setFields(record);
+        result.setEntityType(entity.getClass());
+        return result;
+    }
+
+    private void parseField(Object entity, DbxFields record, Field field) {
+        try {
+            field.setAccessible(true);
+            Method setter = parseHelper.getSetter(field.getType());
+
+            if(setter != null){
+                setter.invoke(parseHelper, field.getName(), field.get(entity), record);
+            }
+        } catch (IllegalAccessException e) {
+            Logger.error(TAG, e.toString());
+        }catch (InvocationTargetException e) {
+            Logger.error(TAG, e.toString());
+        }
     }
 
     private List<Field> getDbxFields(Object entity) {
@@ -133,6 +149,31 @@ public class EntityMapper {
 
     private boolean isDbxTable(Object entity){
         return entity.getClass().isAnnotationPresent(DbxTable.class);
+    }
+
+    private boolean isRelationField(Field field){
+        Relation relation = (Relation) field.getAnnotation(Relation.class);
+        if(relation != null && relation.reference_id().isEmpty()){
+            throw new IllegalArgumentException("Reference id column must be described for " + field.getName() + ". Use refId in annotation.");
+        }
+
+        return relation != null && !relation.reference_id().isEmpty();
+    }
+
+    private String getRefId(Field field){
+        if(!isRelationField(field)){
+            return null;
+        }
+
+        return field.getAnnotation(Relation.class).reference_id();
+    }
+
+    private RelationType getRelationType(Field field){
+        if(!isRelationField(field)){
+            return null;
+        }
+
+        return  field.getAnnotation(Relation.class).relationType();
     }
 
     private boolean isDbxField(Field field){
