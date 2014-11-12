@@ -36,6 +36,9 @@ public class MainView extends FrameLayout implements CanShowScreen<Blueprint> {
         return presenter.getFlow();
     }
 
+    /**
+     * takeView -> FlowOwner#onLoad -> showScreen -> showScreen for view that attached to presenter
+     */
     @Override public void showScreen(Blueprint screen, Flow.Direction direction) {
         screenMaestro.showScreen(screen, direction);
     }

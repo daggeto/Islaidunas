@@ -1,5 +1,6 @@
 package com.islaidunas.domain;
 
+import com.google.common.base.Predicate;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -11,21 +12,29 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 
 @DatabaseTable(tableName = "category")
 public class Category {
-    @DatabaseField(id = true)
+
+    @DatabaseField(generatedId = true)
+    private int id;
+
+    @DatabaseField
     private String code;
+
     @DatabaseField
     private String title;
 
     @DatabaseField
     private String src;
 
-    public Category(){}
+    /**
+     * Sign describes direction of transaction. If True the tx is positive.
+     */
+    @DatabaseField
+    private boolean sign;
 
-    public Category(String code, String title, String src){
-        this.code = code;
-        this.title = title;
-        this.src = src;
-    }
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Bucket bucket;
+
+    public Category(){}
 
     public String getCode() {
         return code;
@@ -51,6 +60,30 @@ public class Category {
         this.src = src;
     }
 
+    public void setSign(boolean sign) {
+        this.sign = sign;
+    }
+
+    public boolean getSign(){
+        return sign;
+    }
+
+    public Bucket getBucket() {
+        return bucket;
+    }
+
+    public void setBucket(Bucket bucket) {
+        this.bucket = bucket;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return new StringBuilder().append(getTitle()).toString();
@@ -64,4 +97,6 @@ public class Category {
                 .append(this.getTitle(), other.getTitle())
                 .isEquals();
     }
+
+
 }

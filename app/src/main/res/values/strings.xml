@@ -21,5 +21,15 @@
     <string name="transaction_date_label">Data</string>
     <string name="title">Kas</string>
     <string name="number_required">Privalote įvesti skaičių</string>
+    <string name="cat_title">Title ...</string>
+    <string name="category_description">Category</string>
+    <string name="edit_image">Edit</string>
+    <string name="simple_text">Textas</string>
+    <string name="all_buckets">All Buckets</string>
+    <string name="all_signs">All Signs</string>
+    <string name="no_selection">No Selection</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="long_sample_text">Long Text</string>
 
 </resources>

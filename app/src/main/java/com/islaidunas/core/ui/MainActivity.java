@@ -1,18 +1,17 @@
 package com.islaidunas.core.ui;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 
+import com.islaidunas.IslaidunasApplication;
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.view.MainView;
@@ -25,15 +24,11 @@ import flow.Flow;
 import mortar.Mortar;
 import mortar.MortarActivityScope;
 import mortar.MortarScope;
-import mortar.MortarScopeDevHelper;
 
 import static android.content.Intent.ACTION_MAIN;
 import static android.content.Intent.CATEGORY_LAUNCHER;
 import static android.view.MenuItem.SHOW_AS_ACTION_ALWAYS;
 
-/**
- * Created by daggreto on 2014.05.19.
- */
 public class MainActivity extends ActionBarActivity implements ActionBarOwner.View{
     private MortarActivityScope activityScope;
     private List<ActionBarOwner.MenuAction> actionBarMenuAction;
@@ -44,6 +39,8 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        IslaidunasApplication.activityContext = this;
 
         if (isWrongInstance()) {
             finish();
@@ -56,6 +53,11 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
 
         activityScope.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         MainView mainView = (MainView) findViewById(R.id.container);
         mainFlow = mainView.getFlow();
 
@@ -92,13 +94,11 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         if (actionBarMenuAction != null) {
             for(final ActionBarOwner.MenuAction menuAction: actionBarMenuAction)
-            menu.add(menuAction.title)
+                menu.add(menuAction.title)
                     .setShowAsActionFlags(SHOW_AS_ACTION_ALWAYS)
-                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                        @Override public boolean onMenuItemClick(MenuItem menuItem) {
-                            menuAction.action.call();
-                            return true;
-                        }
+                    .setOnMenuItemClickListener(menuItem -> {
+                        menuAction.action.call();
+                        return true;
                     })
                     .setIcon(menuAction.image);
         }

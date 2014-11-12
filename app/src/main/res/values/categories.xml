@@ -3,41 +3,85 @@
     <string-array name="personal">
         <item>Asmeninės</item>
         <item>personal</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="clothes">
         <item>Drabužiai</item>
         <item>clothes</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="food">
         <item>Maistas</item>
         <item>food</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="rent">
         <item>Nuoma</item>
         <item>rent</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="entertainment">
-    <item>Pramogos</item>
-    <item>entertainment</item>
+        <item>Pramogos</item>
+        <item>entertainment</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="household">
         <item>Namai</item>
         <item>household</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="healthcare">
         <item>Sveikata</item>
         <item>healthcare</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="bankphone">
         <item>Bankas ir Telefonas</item>
         <item>bankphone</item>
+        <item>false</item>
+        <item>casual</item>
     </string-array>
     <string-array name="transport">
         <item>Transportas</item>
         <item>transport</item>
+        <item>false</item>
+        <item>casual</item>
+    </string-array>
+    <string-array name="salary">
+        <item>Alga</item>
+        <item>personal</item>
+        <item>true</item>
+        <item>casual</item>
     </string-array>
     <string-array name="travel">
         <item>Kelionės</item>
-        <item>ravel</item>
+        <item>travel</item>
+        <item>true</item>
+        <item>travels</item>
+    </string-array>
+    <string-array name="gift">
+        <item>Dovana</item>
+        <item>healthcare</item>
+        <item>true</item>
+        <item>savings</item>
+    </string-array>
+    <string-array name="extra">
+        <item>Papildomos pajamos</item>
+        <item>personal</item>
+        <item>true</item>
+        <item>savings</item>
+    </string-array>
+    <string-array name="saved">
+        <item>Sutaupyta</item>
+        <item>food</item>
+        <item>false</item>
+        <item>savings</item>
     </string-array>
 </resources>

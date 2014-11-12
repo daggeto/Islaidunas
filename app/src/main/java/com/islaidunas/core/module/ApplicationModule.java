@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.islaidunas.core.GsonParcer;
 import com.islaidunas.core.MainThread;
 import com.islaidunas.core.model.QuoteService;
+import com.islaidunas.services.impl.RetrofitClient;
 
 import java.util.concurrent.Executor;
 
@@ -35,13 +36,9 @@ public class ApplicationModule {
         this.context = context;
     }
 
-    @Provides @Singleton @MainThread Scheduler provideMainThread() {
-        final Handler handler = new Handler(Looper.getMainLooper());
-        return new ExecutorScheduler(new Executor() {
-            @Override public void execute(Runnable command) {
-                handler.post(command);
-            }
-        });
+    @Provides @Singleton
+    RetrofitClient getRetrofitClient(){
+        return new RetrofitClient();
     }
 
     @Provides @Singleton Gson provideGson() {
@@ -50,15 +47,6 @@ public class ApplicationModule {
 
     @Provides @Singleton Parcer<Object> provideParcer(Gson gson) {
         return new GsonParcer<Object>(gson);
-    }
-
-    @Provides @Singleton
-    QuoteService provideQuoteService() {
-        RestAdapter restAdapter =
-                new RestAdapter.Builder().setServer("http://www.iheartquotes.com/api/v1/")
-                        .setConverter(new GsonConverter(new Gson()))
-                        .build();
-        return restAdapter.create(QuoteService.class);
     }
 
     @Provides @Singleton Context provideContext(){

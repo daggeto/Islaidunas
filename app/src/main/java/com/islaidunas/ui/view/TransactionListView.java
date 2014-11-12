@@ -14,18 +14,15 @@ import javax.inject.Inject;
 
 import mortar.Mortar;
 
-/**
- * Created by daggreto on 2014.05.13.
- */
 public class TransactionListView extends ListView {
 
     @Inject TransactionListScreen.Presenter presenter;
 
     public TransactionListView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        Mortar.inject(context, this);
+        Mortar.inject(getContext(), this);
 
-        setAdapter(new TransactionsListAdapter(context, presenter.getTransactions()));
+        setAdapter(new TransactionsListAdapter(getContext(), presenter.getTransactions()));
 
         setOnItemClickListener(new OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

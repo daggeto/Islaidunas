@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <com.islaidunas.ui.view.TransactionListItemView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:orientation="horizontal"

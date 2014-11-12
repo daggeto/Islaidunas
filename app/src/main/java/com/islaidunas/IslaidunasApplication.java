@@ -1,6 +1,7 @@
 package com.islaidunas;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.islaidunas.core.module.ApplicationModule;
 
@@ -13,10 +14,13 @@ import mortar.MortarScope;
  */
 public class IslaidunasApplication extends Application {
     private MortarScope rootScope;
+    public static Context context;
+    public static Context activityContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        IslaidunasApplication.context = getApplicationContext();
         rootScope = Mortar.createRootScope(BuildConfig.DEBUG, ObjectGraph.create(new ApplicationModule(this.getApplicationContext())));
     }
 
@@ -27,4 +31,10 @@ public class IslaidunasApplication extends Application {
         return super.getSystemService(name);
     }
 
+    public static Context getContext(){
+        return IslaidunasApplication.context;
+    }
+    public static Context getActivityContext(){
+        return activityContext;
+    }
 }

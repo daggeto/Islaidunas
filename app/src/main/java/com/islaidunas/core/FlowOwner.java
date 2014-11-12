@@ -74,6 +74,9 @@ public abstract class FlowOwner<S extends Blueprint, V extends View & CanShowScr
         return getFlow().goUp();
     }
 
+    /**
+     * takeView -> FlowOwner#onLoad -> showScreen for screen on top of stack
+     */
     protected void showScreen(S newScreen, Flow.Direction flowDirection) {
         V view = getView();
         if (view == null) return;

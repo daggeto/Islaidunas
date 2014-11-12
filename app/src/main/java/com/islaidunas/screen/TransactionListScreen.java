@@ -6,6 +6,7 @@ import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.ui.ActionBarOwner;
 import com.islaidunas.domain.Transaction;
+import com.islaidunas.services.impl.RetrofitClient;
 import com.islaidunas.services.impl.dao.TransactionJpaDao;
 import com.islaidunas.ui.view.TransactionListView;
 
@@ -22,6 +23,10 @@ import mortar.ViewPresenter;
 import rx.util.functions.Action0;
 
 /**
+ * Layouts.createView(childContext, screen) -> view constructor for @Layout view ->
+ * inject presenter -> onFinishInflate -> takeView -> presenter onLoad
+ *
+ *
  * Created by daggreto on 2014.05.13.
  */
 @Layout(R.layout.transaction_list)
@@ -39,11 +44,13 @@ public class TransactionListScreen implements Blueprint {
         private Flow flow;
         private List<Transaction> transactions;
         private ActionBarOwner actionBar;
+        private RetrofitClient retrofitClient;
 
-        @Inject Presenter(Flow flow, List<Transaction> transactions, ActionBarOwner actionBar){
+        @Inject Presenter(Flow flow, List<Transaction> transactions, ActionBarOwner actionBar, RetrofitClient retrofitClient){
             this.flow = flow;
             this.transactions = transactions;
             this.actionBar = actionBar;
+            this.retrofitClient = retrofitClient;
         }
 
         @Override
@@ -61,6 +68,24 @@ public class TransactionListScreen implements Blueprint {
                             }
                             , android.R.drawable.ic_menu_add
             ));
+
+            actionBarConfig.addAction(new ActionBarOwner.MenuAction("Settings",
+                    new Action0() {
+                        @Override
+                        public void call() {
+                            retrofitClient.getContributor();
+                        }
+                    }
+                    , android.R.drawable.ic_menu_preferences
+            ));
+            actionBarConfig.addAction(new ActionBarOwner.MenuAction("Categories",
+                    new Action0(){
+                        @Override
+                        public void call() {
+                            flow.goTo(new CategoryManagerScreen());
+                        }
+                    }
+                    ,android.R.drawable.ic_dialog_dialer));
 
             actionBar.setConfig(actionBarConfig);
 

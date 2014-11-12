@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.islaidunas.R;
-import com.islaidunas.adapter.CategorySpinnerAdapter;
+import com.islaidunas.adapter.SingleStringArrayAdapter;
 import com.islaidunas.domain.Category;
 import com.islaidunas.dto.TransactionAddViewDto;
 import com.islaidunas.screen.AddTransactionScreen;
@@ -25,7 +25,6 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NumberRule;
 import com.mobsandgeeks.saripaar.annotation.Required;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.inject.Inject;
@@ -101,7 +100,7 @@ public class AddTransactionView extends LinearLayout implements DatePickerDialog
     }
 
     private void initCategorySpinner() {
-        CategorySpinnerAdapter adapter = new CategorySpinnerAdapter(getContext(), presenter.getCategories());
+        SingleStringArrayAdapter adapter = new SingleStringArrayAdapter(getContext(), presenter.getCategories());
         category.setAdapter(adapter);
         category.setSelection(adapter.getPosition(transactionAddViewDto.getCategory()));
     }

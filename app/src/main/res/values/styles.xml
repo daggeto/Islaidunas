@@ -1,8 +1,44 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="actionBarTitleTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="filterBarStyle">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="categoryItemBackStyle" parent="categoryItemPadding">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="categoryItemStyle" parent="categoryItemPadding">
+        <item name="android:background">@android:color/white</item>
+    </style>
+    
+    <style name="categoryItemPadding">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+    <style name="CategoryNameStyle">
+        <item name="android:textSize">28sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textColor">@color/MainTextColor</item>
+    </style>
+    <style name="CategoryItemSmallText">
+        <item name="android:textSize">1sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+
+    <style name="selectedCategory">
+        <item name="android:background">@color/selected</item>
+    </style>
+    <style name="unselectedCategory">
+        <item name="android:background">@android:color/background_light</item>
+    </style>
 </resources>

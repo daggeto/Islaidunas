@@ -72,7 +72,7 @@ public class ScreenConductor<S extends Blueprint> implements CanShowScreen<S> {
         Context childContext = newChildScope.createContext(context);
         newChild = Layouts.createView(childContext, screen);
 
-        setAnimation(direction, oldChild, newChild);
+        //setAnimation(direction, oldChild, newChild);
 
         // Out with the old, in with the new.
         if (oldChild != null) container.removeView(oldChild);

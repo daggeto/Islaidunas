@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.islaidunas.core.ui.MainActivity;
 import com.islaidunas.services.impl.IslaidunasSqLiteOpenHelper;
+import com.islaidunas.services.impl.dao.BucketJpaDao;
 import com.islaidunas.services.impl.dao.CategoryJpaDao;
 import com.islaidunas.services.impl.dao.TransactionJpaDao;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -22,5 +23,9 @@ public class DatabaseModule {
 
     @Provides CategoryJpaDao provideCategoryJpaDao(Context context) {
         return new CategoryJpaDao(context);
+    }
+
+    @Provides BucketJpaDao provideBucketJpaDao(Context context){
+        return new BucketJpaDao(context);
     }
 }
