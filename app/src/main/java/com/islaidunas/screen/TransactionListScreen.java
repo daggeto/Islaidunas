@@ -60,14 +60,10 @@ public class TransactionListScreen implements Blueprint {
             ActionBarOwner.Config actionBarConfig = actionBar.getConfig();
 
             actionBarConfig = actionBarConfig.withAction(
-                    new ActionBarOwner.MenuAction("New Transaction",
-                            new Action0() {
-                                @Override public void call() {
-                                    flow.goTo(new AddTransactionScreen());
-                                }
-                            }
-                            , android.R.drawable.ic_menu_add
-            ));
+                    new ActionBarOwner.MenuAction(
+                            "New Transaction", () ->  flow.goTo(new AddTransactionScreen()),
+                            android.R.drawable.ic_menu_add)
+            );
 
             actionBarConfig.addAction(new ActionBarOwner.MenuAction("Settings",
                     new Action0() {
@@ -79,12 +75,7 @@ public class TransactionListScreen implements Blueprint {
                     , android.R.drawable.ic_menu_preferences
             ));
             actionBarConfig.addAction(new ActionBarOwner.MenuAction("Categories",
-                    new Action0(){
-                        @Override
-                        public void call() {
-                            flow.goTo(new CategoryManagerScreen());
-                        }
-                    }
+                    () -> flow.goTo(new CategoryManagerScreen())
                     ,android.R.drawable.ic_dialog_dialer));
 
             actionBar.setConfig(actionBarConfig);

@@ -44,6 +44,7 @@ public class Main implements Blueprint {
             return presenter.getFlow();
         }
     }
+
     @Singleton public static class Presenter extends FlowOwner<Blueprint, MainView> {
         private final ActionBarOwner actionBarOwner;
         private Resources resources;
