@@ -4,17 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:id="@+id/back"
-        android:tag="back"
-        style="@style/categoryItemBackStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/simple_text"/>
-        </RelativeLayout>
-    <RelativeLayout
         android:id="@+id/front"
         android:tag="front"
         style="@style/categoryItemStyle"

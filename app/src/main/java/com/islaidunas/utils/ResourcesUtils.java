@@ -1,8 +1,10 @@
 package com.islaidunas.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import com.islaidunas.IslaidunasApplication;
 
@@ -22,5 +24,18 @@ public class ResourcesUtils {
 
     public static int getColor(int id){
         return IslaidunasApplication.getContext().getResources().getColor(id);
+    }
+
+    public static float getActionBarSize(){
+        Context context = IslaidunasApplication.getContext();
+
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true);
+
+        int[] actionBarSize = new int[] { android.R.attr.actionBarSize };
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, actionBarSize);
+        float size = a.getDimensionPixelSize(0, -1);
+        a.recycle();
+        return size;
     }
 }

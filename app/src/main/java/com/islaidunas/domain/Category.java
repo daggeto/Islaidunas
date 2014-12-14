@@ -1,6 +1,5 @@
 package com.islaidunas.domain;
 
-import com.google.common.base.Predicate;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 

@@ -1,4 +1,4 @@
-package com.islaidunas.ui.view.listeners;
+package com.islaidunas.ui.view.listener;
 
 import android.view.View;
 import android.widget.AdapterView;

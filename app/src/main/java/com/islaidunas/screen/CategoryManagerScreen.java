@@ -25,11 +25,9 @@ import mortar.Blueprint;
 import mortar.ViewPresenter;
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 import rx.subscriptions.Subscriptions;
 
-/**
- * Created by daggreto on 2014.07.09.
- */
 @Layout(R.layout.category_manager)
 public class CategoryManagerScreen implements Blueprint, HasParent<TransactionListScreen> {
 
@@ -54,16 +52,16 @@ public class CategoryManagerScreen implements Blueprint, HasParent<TransactionLi
         }
 
         public Observable<List<Category>> getCategories(){
-            return Observable.create(observer -> {
-                observer.onNext(categoryJpaDao.findAll());
-                observer.onCompleted();
-                return Subscriptions.empty();
+            return Observable.create((Observable.OnSubscribe<List<Category>>) subscriber -> {
+                subscriber.onNext(categoryJpaDao.findAll());
+                subscriber.onCompleted();
             });
         }
 
         public List<Bucket> findAllBuckets(){
             return bucketJpaDao.findAll();
         }
+
         public List<CategorySignDto> getSigns(){
             return Arrays.asList(
                     new CategorySignDto(CategorySign.positive),

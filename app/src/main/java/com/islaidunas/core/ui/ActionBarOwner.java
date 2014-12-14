@@ -25,7 +25,7 @@ import java.util.List;
 import mortar.Mortar;
 import mortar.MortarScope;
 import mortar.Presenter;
-import rx.util.functions.Action0;
+import rx.functions.Action0;
 
 /** Allows shared configuration of the Android ActionBar. */
 public class ActionBarOwner extends Presenter<ActionBarOwner.View> {

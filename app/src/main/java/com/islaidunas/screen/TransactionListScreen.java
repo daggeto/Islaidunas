@@ -20,7 +20,7 @@ import flow.Flow;
 import flow.Layout;
 import mortar.Blueprint;
 import mortar.ViewPresenter;
-import rx.util.functions.Action0;
+import rx.functions.Action0;
 
 /**
  * Layouts.createView(childContext, screen) -> view constructor for @Layout view ->
@@ -66,12 +66,7 @@ public class TransactionListScreen implements Blueprint {
             );
 
             actionBarConfig.addAction(new ActionBarOwner.MenuAction("Settings",
-                    new Action0() {
-                        @Override
-                        public void call() {
-                            retrofitClient.getContributor();
-                        }
-                    }
+                    () -> retrofitClient.getContributor()
                     , android.R.drawable.ic_menu_preferences
             ));
             actionBarConfig.addAction(new ActionBarOwner.MenuAction("Categories",

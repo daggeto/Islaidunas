@@ -15,6 +15,7 @@ import com.islaidunas.IslaidunasApplication;
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.view.MainView;
+import com.islaidunas.utils.ResourcesUtils;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ import flow.Flow;
 import mortar.Mortar;
 import mortar.MortarActivityScope;
 import mortar.MortarScope;
+import rx.Observable;
+import rx.functions.Action1;
+import rx.subjects.PublishSubject;
 
 import static android.content.Intent.ACTION_MAIN;
 import static android.content.Intent.CATEGORY_LAUNCHER;
@@ -34,18 +38,21 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
     private List<ActionBarOwner.MenuAction> actionBarMenuAction;
 
     private Flow mainFlow;
+
+    private Toolbar toolbar;
+
     @Inject ActionBarOwner actionBarOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        IslaidunasApplication.activityContext = this;
-
         if (isWrongInstance()) {
             finish();
             return;
         }
+
+        IslaidunasApplication.activityContext = this;
 
         MortarScope parentScope = Mortar.getScope(getApplication());
         activityScope = Mortar.requireActivityScope(parentScope, new Main());
@@ -53,7 +60,8 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
 
         activityScope.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -152,4 +160,7 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
         }
     }
 
+    public Toolbar getToolbar(){
+        return toolbar;
+    }
 }

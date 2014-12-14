@@ -98,19 +98,6 @@ public class FloatingActionButton extends View{
         }
     }
 
-    public void dragFAB(float toX, float toY, Animator.AnimatorListener listener){
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(this, "translationX", toX);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(this, "translationY", toY);
-        AnimatorSet animSetXY = new AnimatorSet();
-        animSetXY.playTogether(scaleX);
-        animSetXY.playTogether(scaleY);
-        animSetXY.setInterpolator(decelerateInterpolator);
-        animSetXY.setDuration(1000);
-        animSetXY.start();
-        animSetXY.addListener(listener);
-
-    }
-
     public void showFloatingActionButton() {
         if (mHidden) {
             ObjectAnimator scaleX = ObjectAnimator.ofFloat(this, "scaleX", 0, 1);
@@ -211,4 +198,5 @@ public class FloatingActionButton extends View{
             return (int) (dp * scale + 0.5f) ;
         }
     }
+    
 }

@@ -3,10 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <com.islaidunas.ui.view.ScrollObservableListView
+        android:id="@+id/category_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="90dp"
+        android:numColumns="3"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        />
     <RelativeLayout
         android:id="@+id/filter_spinners"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="?attr/actionBarSize"
         style="@style/filterBarStyle">
         <Spinner
             android:id="@+id/buckets_spinner"
@@ -24,17 +34,9 @@
             android:layout_toEndOf="@id/buckets_spinner"
             android:layout_toRightOf="@id/buckets_spinner"
             android:layout_alignParentBottom="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/info"/>
     </RelativeLayout>
-    <com.fortysevendeg.swipelistview.SwipeListView
-        xmlns:swipe="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/category_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnWidth="90dp"
-        android:numColumns="3"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
-        swipe:swipeFrontView="@+id/front"
-        swipe:swipeBackView="@+id/back"
-        />
 </com.islaidunas.ui.view.CategoryManagerView>

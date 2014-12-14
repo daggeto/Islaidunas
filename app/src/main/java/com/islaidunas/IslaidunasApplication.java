@@ -8,6 +8,7 @@ import com.islaidunas.core.module.ApplicationModule;
 import dagger.ObjectGraph;
 import mortar.Mortar;
 import mortar.MortarScope;
+import timber.log.Timber;
 
 /**
  * @author artas
@@ -22,6 +23,8 @@ public class IslaidunasApplication extends Application {
         super.onCreate();
         IslaidunasApplication.context = getApplicationContext();
         rootScope = Mortar.createRootScope(BuildConfig.DEBUG, ObjectGraph.create(new ApplicationModule(this.getApplicationContext())));
+
+        Timber.plant(new Timber.DebugTree());
     }
 
     @Override public Object getSystemService(String name) {

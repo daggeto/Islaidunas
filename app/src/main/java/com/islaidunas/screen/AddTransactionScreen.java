@@ -28,7 +28,7 @@ import flow.HasParent;
 import flow.Layout;
 import mortar.Blueprint;
 import mortar.ViewPresenter;
-import rx.util.functions.Action0;
+import rx.functions.Action0;
 
 /**
  * Created by daggreto on 2014.05.15.
