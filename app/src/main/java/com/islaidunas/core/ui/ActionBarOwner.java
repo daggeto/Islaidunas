@@ -38,12 +38,15 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.View> {
 
         void setMenu(List<MenuAction> action);
 
+        void setTitleEnabled(boolean enabled);
+
         Context getMortarContext();
     }
 
     public static class Config {
         public final boolean showHomeEnabled;
         public final boolean upButtonEnabled;
+        public boolean titleEnabled = true;
         public final CharSequence title;
         public final List<MenuAction> actions;
 
@@ -52,9 +55,6 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.View> {
             this.showHomeEnabled = showHomeEnabled;
             this.upButtonEnabled = upButtonEnabled;
             this.title = title;
-            if(actions == null){
-                actions = new ArrayList<MenuAction>();
-            }
             this.actions = actions;
         }
 
@@ -66,6 +66,11 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.View> {
 
         public Config addAction(MenuAction action){
             actions.add(action);
+            return this;
+        }
+
+        public Config setTitleEnabled(boolean enabled){
+            titleEnabled = enabled;
             return this;
         }
     }
@@ -115,6 +120,7 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.View> {
 
         view.setShowHomeEnabled(config.showHomeEnabled);
         view.setUpButtonEnabled(config.upButtonEnabled);
+        view.setTitleEnabled(config.titleEnabled);
         view.setTitle(config.title);
         view.setMenu(config.actions);
     }

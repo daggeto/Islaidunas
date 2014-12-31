@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
+import com.islaidunas.core.ui.ActionBarOwner;
 import com.islaidunas.domain.Bucket;
 import com.islaidunas.domain.Category;
 import com.islaidunas.domain.CategorySign;
@@ -41,6 +42,8 @@ public class CategoryManagerScreen implements Blueprint, HasParent<TransactionLi
         private CategoryJpaDao categoryJpaDao;
         private BucketJpaDao bucketJpaDao;
 
+        @Inject ActionBarOwner actionBar;
+
         @Inject Presenter(Flow flow, CategoryJpaDao categoryJpaDao, BucketJpaDao bucketJpaDao){
             this.flow = flow;
             this.categoryJpaDao = categoryJpaDao;
@@ -49,6 +52,10 @@ public class CategoryManagerScreen implements Blueprint, HasParent<TransactionLi
 
         @Override protected void onLoad(Bundle savedInstanceState) {
             super.onLoad(savedInstanceState);
+
+            ActionBarOwner.Config actionBarConfig = actionBar.getConfig();
+            actionBarConfig.setTitleEnabled(false);
+            actionBar.setConfig(actionBarConfig);
         }
 
         public Observable<List<Category>> getCategories(){

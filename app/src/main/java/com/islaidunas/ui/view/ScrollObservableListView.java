@@ -13,22 +13,24 @@ public class ScrollObservableListView extends ListView {
 
     public static int SCROLL_UP = 1;
     public static int SCROLL_DOWN = -1;
+    public static int NO_SCROLL = 0;
+
+    private int mCurrentScrollState = OnScrollListener.SCROLL_STATE_IDLE;
 
     private final ForwardingOnScrollListener mForwardingOnScrollListener = new ForwardingOnScrollListener();
-
     private int mFirstVisiblePosition;
     private float mFirstVisibleViewTop;
     private int mLastVisiblePosition;
+
     private float mLastVisibleViewTop;
-
     private int mPrevFirstPos;
-    private float mPrevFirstTop;
 
+    private float mPrevFirstTop;
     private PublishSubject mScrollSubject;
+
     private PublishSubject mScrollStateSubject;
 
-    private int mCurrentScrollState = OnScrollListener.SCROLL_STATE_IDLE;
-    private static int mScrollDirection = -1;
+
 
     public ScrollObservableListView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -96,11 +98,10 @@ public class ScrollObservableListView extends ListView {
 
             int dif = view.getFirstVisiblePosition() - mPrevFirstPos;
 
-            if(dif > 0){
-                return SCROLL_DOWN;
-            }
+            if(dif > 0) return SCROLL_DOWN;
+            if(dif < 0) return SCROLL_UP;
 
-            return SCROLL_UP;
+            return NO_SCROLL;
     }
 
         @Override
@@ -115,12 +116,6 @@ public class ScrollObservableListView extends ListView {
                 distance = getChildAt(mLastVisiblePosition - firstVisiblePosition).getY() - mLastVisibleViewTop;
             } else {
                 distance = getAvarageDistance(firstVisiblePosition, visibleItemCount);
-            }
-
-            if(distance != 0){
-                mScrollDirection = distance < 0 ? SCROLL_DOWN : SCROLL_UP;
-            } else {
-                mScrollDirection = -1;
             }
 
             if(mScrollSubject != null

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,6 @@ import com.islaidunas.IslaidunasApplication;
 import com.islaidunas.R;
 import com.islaidunas.core.screen.Main;
 import com.islaidunas.core.view.MainView;
-import com.islaidunas.utils.ResourcesUtils;
 
 import java.util.List;
 
@@ -25,9 +25,6 @@ import flow.Flow;
 import mortar.Mortar;
 import mortar.MortarActivityScope;
 import mortar.MortarScope;
-import rx.Observable;
-import rx.functions.Action1;
-import rx.subjects.PublishSubject;
 
 import static android.content.Intent.ACTION_MAIN;
 import static android.content.Intent.CATEGORY_LAUNCHER;
@@ -65,6 +62,7 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
 
         MainView mainView = (MainView) findViewById(R.id.container);
         mainFlow = mainView.getFlow();
@@ -126,6 +124,12 @@ public class MainActivity extends ActionBarActivity implements ActionBarOwner.Vi
     public void setShowHomeEnabled(boolean enabled) {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(enabled);
+    }
+
+    @Override
+    public void setTitleEnabled(boolean enabled) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(enabled);
     }
 
     @Override

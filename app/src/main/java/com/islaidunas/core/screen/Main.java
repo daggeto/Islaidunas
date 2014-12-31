@@ -10,6 +10,8 @@ import com.islaidunas.core.ui.ActionBarOwner;
 import com.islaidunas.core.view.MainView;
 import com.islaidunas.screen.TransactionListScreen;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -58,7 +60,7 @@ public class Main implements Blueprint {
         @Override public void showScreen(Blueprint newScreen, Flow.Direction direction) {
             boolean hasUp = newScreen instanceof HasParent;
             String title = newScreen.getMortarScopeName();
-            actionBarOwner.setConfig(new ActionBarOwner.Config(true, hasUp, title, null));
+            actionBarOwner.setConfig(new ActionBarOwner.Config(true, hasUp, title, new ArrayList<ActionBarOwner.MenuAction>()));
 
             super.showScreen(newScreen, direction);
         }

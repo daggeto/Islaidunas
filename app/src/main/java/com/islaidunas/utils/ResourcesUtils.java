@@ -3,10 +3,17 @@ package com.islaidunas.utils;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.islaidunas.IslaidunasApplication;
+import com.islaidunas.R;
+import com.islaidunas.core.ui.MainActivity;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by daggreto on 2014.10.03.
@@ -37,5 +44,16 @@ public class ResourcesUtils {
         float size = a.getDimensionPixelSize(0, -1);
         a.recycle();
         return size;
+    }
+
+    public static ViewGroup getToolBarContent(){
+        MainActivity context = (MainActivity) IslaidunasApplication.getActivityContext();
+        Toolbar actionBar = context.getToolbar();
+        return ButterKnife.findById(actionBar, R.id.toolbar_content);
+    }
+
+    public static ViewGroup getToolbarContainer(){
+        MainActivity context = (MainActivity) IslaidunasApplication.getActivityContext();
+        return ButterKnife.findById(context, R.id.toolbar_container);
     }
 }
